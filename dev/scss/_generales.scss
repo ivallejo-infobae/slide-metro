@@ -1,0 +1,116 @@
+// ===== ///// FONTS ///// ===== //
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+// ===== ///// VARIABLES ///// ===== //
+$orange-infobae: #f68e01;
+$gray-component: #575757;
+
+// ===== ///// FUNCTIONS ///// ===== //
+
+@function em($number, $parent:16px) {
+  @return ($number / $parent) * 1em;
+}
+
+@function rem($number, $parent:16px) {
+  @return ($number / $parent) * 1rem;
+}
+
+// ===== ///// MIXINS ///// ===== //
+
+$breakpoints: (
+  sm: rem(375px),
+  md: rem(750px),
+  lg: rem(992px),
+  xl: rem(1200px),
+  xxl: rem(1600px)
+);
+
+@mixin media-query($breakpoint) {
+  @if map-has-key($breakpoints,$breakpoint) {
+    @media screen and (min-width: map-get($breakpoints,$breakpoint)) {
+      @content;
+    }
+  } @else {
+    @media screen and (min-width: $breakpoint) {
+      @content;
+    }
+  }
+};
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f0f0f0;
+}
+
+// ===== ***** SLIDER ***** ===== //
+
+.wrap-component {
+  width: 100%;
+  max-width: 768px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.wrap-title {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  color: $gray-component;
+  font-size: rem(14px);
+  @include media-query(md) {
+    font-size: rem(16px);
+  }
+}
+
+.wrap-slider {
+  width: 100%;
+  min-height: 450px;
+  padding: 10px 10px 30px 10px;
+  @include media-query(sm) {
+
+  }
+  @include media-query(md) {
+
+  }
+}
+
+.slider {
+  .owl-dots {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .owl-dot {
+      display: block;
+      width: 15px;
+      height: 15px;
+      margin: 0 3px;
+      border-radius: 50px;
+      border: 2px solid $orange-infobae;
+      background-color: transparent;
+      outline: none !important;
+      &.active {
+        background-color: $orange-infobae;
+      }
+    }
+  }
+  @include media-query(sm) {
+  
+  }
+  @include media-query(md) {
+    .owl-dots {
+      .owl-dot {
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+}
